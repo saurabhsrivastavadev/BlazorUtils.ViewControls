@@ -1,0 +1,26 @@
+﻿@typeparam ListItemDataType
+
+@using System.Diagnostics.CodeAnalysis
+
+<div id="container">
+
+    @foreach (var item in ListItems)
+    {
+        if (ListItemTemplate is not null)
+        {
+            <div>
+                @ListItemTemplate(item)
+            </div>
+        }
+    }
+
+</div>
+
+@code {
+
+    [Parameter]
+    public RenderFragment<ListItemDataType>? ListItemTemplate { get; set; }
+
+    [Parameter, AllowNull]
+    public IReadOnlyList<ListItemDataType> ListItems { get; set; }
+}
